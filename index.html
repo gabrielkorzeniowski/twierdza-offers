@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twierdza Offers</title>
+  <style>
+    :root {
+      --bg: #f3f9ff;
+      --primary: #0a2540;
+      --secondary: #2d5c8a;
+      --accent: #e5effa;
+      --white: #ffffff;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--primary);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    p.subtitle {
+      margin-top: 0.5rem;
+      color: #54759a;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .nav-switch {
+      display: flex;
+      background: linear-gradient(to right, #264d73, #0a2540);
+      border-radius: 50px;
+      padding: 0.4rem;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+      overflow: hidden;
+      width: fit-content;
+    }
+
+    .nav-switch button {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .nav-switch button.active {
+      background: #2d5c8a;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .filter-btn {
+      background: var(--white);
+      color: var(--secondary);
+      border: none;
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow);
+      transition: all 0.25s ease;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .filter-btn img {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 0.4rem;
+      object-fit: contain;
+      transition: filter 0.3s ease;
+    }
+
+    .filter-btn.active img {
+      filter: brightness(0) invert(1);
+    }
+
+    .filter-btn span {
+      display: block;
+      font-size: 0.6rem;
+    }
+
+    .filter-btn.active {
+      background: var(--secondary);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    .offers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      width: 90%;
+      max-width: 1200px;
+      margin: 3rem auto 4rem;
+    }
+
+    .offer {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
+      transition: all 0.25s;
+    }
+
+    .offer:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .offer h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .offer p {
+      margin: 0.4rem 0;
+      color: #395b7d;
+    }
+
+    .offer strong {
+      color: var(--primary);
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      color: var(--primary);
+    }
+
+    .category-tag {
+      background: var(--accent);
+      color: var(--secondary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Twierdza Offers</h1>
+  <p class="subtitle">Odkryj najlepsze oferty</p>
+
+  <div class="nav-switch">
+    <button class="active">Oferty</button>
+    <button onclick="window.location.href='oferta.html'">Dodaj ofertę</button>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-category="Wszystko">
+      <img src="images/wszystko.png" alt="Wszystko" />
+      <span>Wszystko</span>
+    </button>
+    <button class="filter-btn" data-category="Mundury">
+      <img src="images/mundur.png" alt="Mundury" />
+      <span>Mundury</span>
+    </button>
+    <button class="filter-btn" data-category="Bojówki">
+      <img src="images/bojowki.png" alt="Bojówki" />
+      <span>Bojówki</span>
+    </button>
+    <button class="filter-btn" data-category="Spódnice">
+      <img src="images/spodnica.png" alt="Spódnice" />
+      <span>Spódnice</span>
+    </button>
+    <button class="filter-btn" data-category="Buty">
+      <img src="images/buty.png" alt="Buty" />
+      <span>Buty</span>
+    </button>
+    <button class="filter-btn" data-category="Książki">
+      <img src="images/ksiazki.png" alt="Książki" />
+      <span>Książki</span>
+    </button>
+    <button class="filter-btn" data-category="Inne">
+      <img src="images/inne.png" alt="Inne" />
+      <span>Inne</span>
+    </button>
+  </div>
+
+  <div class="offers" id="offers">
+
+    <!-- 🟩 Nowe oferty DOPISUJESZ tutaj, na górze listy ↓ -->
+	
+
+	
+    <div class="offer" data-category="Buty">
+      <span class="category-tag">BUTY</span>
+      <h3>Buty wojskowe nowy model</h3>
+      <p>Wysokiej jakości buty taktyczne, rozmiar 43, odporne na wodę.</p>
+      <div class="price">299 zł</div>
+      <p><strong>Kontakt:</strong> taktyk@army.pl</p>
+    </div>
+
+    <div class="offer" data-category="Mundury">
+      <span class="category-tag">MUNDURY</span>
+      <h3>Mundur Wojskowy</h3>
+      <p>Sprzedam mundur polowy – stan bardzo dobry, rozmiar L.</p>
+      <div class="price">249 zł</div>
+      <p><strong>Kontakt:</strong> jan.kowalski@example.com</p>
+    </div>
+
+    <div class="offer" data-category="Bojówki">
+      <span class="category-tag">BOJÓWKI</span>
+      <h3>Bojówki męskie</h3>
+      <p>Nowe bojówki w kolorze khaki. Wygodne i trwałe.</p>
+      <div class="price">159 zł</div>
+      <p><strong>Kontakt:</strong> sklep@twierdza.pl</p>
+    </div>
+
+    <div class="offer" data-category="Inne">
+      <span class="category-tag">INNE</span>
+      <h3>Latarka taktyczna</h3>
+      <p>Mocna latarka LED – 5 trybów, wodoodporna obudowa.</p>
+      <div class="price">89 zł</div>
+      <p><strong>Kontakt:</strong> info@latarki.pl</p>
+    </div>
+
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const offers = document.querySelectorAll('.offer');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.category;
+
+        offers.forEach(offer => {
+          if (category === 'Wszystko' || offer.dataset.category === category) {
+            offer.style.display = 'block';
+          } else {
+            offer.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

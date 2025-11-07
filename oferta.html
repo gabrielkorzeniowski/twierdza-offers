@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twierdza Offers – Dodaj ofertę</title>
+  <style>
+    :root {
+      --bg: #f3f9ff;
+      --primary: #0a2540;
+      --secondary: #2d5c8a;
+      --accent: #e5effa;
+      --white: #ffffff;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--primary);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    p.subtitle {
+      margin-top: 0.5rem;
+      color: #54759a;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .nav-switch {
+      display: flex;
+      background: linear-gradient(to right, #264d73, #0a2540);
+      border-radius: 50px;
+      padding: 0.4rem;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+
+    .nav-switch button {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-switch button.active {
+      background: #2d5c8a;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 🔹 Pojedynczy kafelek z formularzem w stylu ofert */
+    .offers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      width: 90%;
+      max-width: 1200px;
+      margin: 3rem auto 4rem;
+      justify-items: center;
+    }
+
+    .offer {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
+      transition: all 0.25s;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .offer:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .offer h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: block;
+      color: var(--primary);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(45, 92, 138, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(to right, #2d5c8a, #0a2540);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background: #0f3762;
+      transform: translateY(-2px);
+    }
+
+    .success {
+      display: none;
+      background: #e6f4ea;
+      color: #0a592a;
+      border: 1px solid #9ed4a5;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 300px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .nav-switch button {
+        padding: 0.6rem 1.6rem;
+        font-size: 1rem;
+      }
+      .offer {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Twierdza Offers</h1>
+  <p class="subtitle">Stwórz swoje ogłoszenie</p>
+
+  <div class="nav-switch">
+    <button onclick="window.location.href='index.html'">Oferty</button>
+    <button class="active">Dodaj ofertę</button>
+  </div>
+
+  <div class="offers">
+    <div class="offer">
+      <div class="success" id="successMsg">Twoja oferta została wysłana do akceptacji.</div>
+
+      <h2>Dodaj nową ofertę</h2>
+
+      <form id="offerForm">
+        <label for="title">Tytuł*</label>
+        <input id="title" name="Tytuł" type="text" placeholder="Wpisz tytuł oferty" required>
+
+        <label for="desc">Opis*</label>
+        <textarea id="desc" name="Opis" placeholder="Opisz swoją ofertę, rozmiar, kolor, stan" required></textarea>
+
+        <label for="price">Cena (PLN)*</label>
+        <input id="price" name="Cena" type="number" step="1.00" placeholder="0.00" required>
+
+        <label for="category">Kategoria*</label>
+        <select id="category" name="Kategoria" required>
+          <option value="">Wybierz kategorię</option>
+          <option>Mundury</option>
+          <option>Bojówki</option>
+          <option>Spódnice</option>
+          <option>Buty</option>
+          <option>Książki</option>
+          <option>Inne</option>
+        </select>
+
+        <label for="contact">Kontakt (e-mail lub telefon)*</label>
+        <input id="contact" name="Kontakt" type="text" placeholder="+48 123 456 789 lub email@example.com" required>
+
+        <button type="submit">Wyślij ofertę</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    const serviceID = "service_43c2jrq";
+    const templateID = "template_zrxsa4w";
+    const publicKey = "csPz9N4BIaXXTEfRc";
+
+    emailjs.init({ publicKey });
+
+    const form = document.getElementById("offerForm");
+    const msg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = Object.fromEntries(new FormData(form).entries());
+
+      emailjs.send(serviceID, templateID, formData)
+        .then(() => {
+          msg.style.display = "block";
+          form.reset();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        })
+        .catch((error) => {
+          console.error("EmailJS error:", error);
+          alert("Błąd wysyłania. Spróbuj ponownie później.");
+        });
+    });
+  </script>
+
+</body>
+</html>
